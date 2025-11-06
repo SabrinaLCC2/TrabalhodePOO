@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}Consulta{% endblock %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-dark">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white">Home</a></li>
+        <li class="breadcrumb-item active">Consulta</li>
+    </ol>
+</nav>
+
+<h3 class="alert alert-secondary">Lista de Consultas</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Data da consulta</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for objeto in lista_consultas %}
+         <tr>
+            <td>{{ objeto.paciente }}</td>
+            <td>{{ objeto.medico }}</td>
+            <td>{{ objeto.data_consulta }}</td>
+            <td>
+                <a href="#"><img src="{% static 'img/editar.png' %}" width="18px"></a>
+                <a href="#"><img src="{% static 'img/deletar.png' %}" width="18px"></a>
+                <a href="{% url 'detalhamento_consulta' id=objeto.id %}"><img src="{% static 'img/detalhar.png' %}" width="18px"></a>
+             </td>
+         </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if lista_consultas.number == 1 %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">&laquo; Primeira</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Anterior</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="{% url 'consulta' %}?p=1">&laquo; Primeira</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="{% url 'consulta' %}?p={{lista_consultas.previous_page_number}}">Anterior</a>
+        </li>
+        {% endif %}
+        <li class="page-item disable">
+          <a class="page-link" href="">{{lista_consultas.number}}</a>
+        </li>
+        {% if lista_consultas.paginator.num_pages == lista_consultas.number %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Próxima</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Última &raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="{% url 'consulta' %}?p={{lista_consultas.next_page_number}}">Próxima</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="{% url 'consulta' %}?p={{lista_consultas.paginator.num_pages}}">Última &raquo;</a>
+        </li>
+        {% endif %}
+  
+    </ul>
+  </nav><br />
+
+{% endblock %}

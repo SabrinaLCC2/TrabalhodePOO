@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Detalhes do médico{% endblock %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-dark">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-white">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'medico' %}" class="text-white">Médico</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Detalhes do Médico
+        </li>
+    </ol>
+</nav>
+
+<h3 class='alert alert-secondary'>Detalhes do Médico</h3>
+
+Nome completo: {{medico.nome_completo}}
+<br />
+Endereço: {{medico.endereco}} 
+<br />
+Cidade: {{medico.cidade}}
+<br />
+Unidade Federativa: {{medico.uf}}
+<br />
+CEP: {{medico.cep}}
+<br />
+Telefone: {{medico.telefone}}
+<br />
+E-mail: {{medico.email}}
+<br />
+Especialidade: {{medico.especialidade}}
+<br />
+Usuário: {{medico.usuario}}
+<br />
+Data de cadastro: {{medico.data_cadastro}}
+<br />
+Data de modificação: {{medico.data_modificacao}}
+
+<h4 class='alert'>Consultas realizadas</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Data da consulta</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for objeto in consultas %}
+<tr>
+    <td>{{ objeto.paciente }}</td>
+    <td>{{ objeto.data_consulta }}</td>
+    <td>
+        <a href="#"><img src="{% static 'img/editar.png' %}" width="18px"></a>
+        <a href="#"><img src="{% static 'img/deletar.png' %}" width="18px"></a>
+        <a href="#"><img src="{% static 'img/detalhar.png' %}" width="18px"></a>
+     </td>
+ </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

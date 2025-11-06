@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Página estática</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}">
+    </head>
+    <body>
+        <img width="300px" src="{% static 'img/arquitetura_django.png' %}">
+        <a href="{% static 'pdf/fields_django.pdf' %}">Aquivo pdf</a>
+        <script src="{% static 'js/javascript.js' %}"></script>
+    </body>
+</html>

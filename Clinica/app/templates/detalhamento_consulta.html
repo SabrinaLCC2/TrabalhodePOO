@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Detalhes da consulta{% endblock %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-dark">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-white">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'consulta' %}" class="text-white">Consulta</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Detalhes da Consulta
+        </li>
+    </ol>
+</nav>
+
+<h3 class='alert alert-secondary'>Detalhes da consulta</h3>
+
+Data do agendamento: {{consulta.data_agendamento}}
+<br />
+Data da consulta: {{consulta.data_consulta}}
+<br />
+Relato do paciente: {{consulta.relato_paciente}}
+<br />
+Laudo: {{consulta.laudo}}
+<br />
+Medicação: {{consulta.medicacao}}
+<br />
+Atendente: {{consulta.atendente}}
+<br />
+Medico: {{consulta.medico}}
+<br />
+Paciente: {{consulta.paciente}}
+<br />
+Data da modificação: {{consulta.data_modificacao}}
+
+{% endblock %}

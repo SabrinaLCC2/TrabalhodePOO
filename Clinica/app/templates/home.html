@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Home
+{% endblock %}
+{% block conteudo %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-dark">
+        <li class="breadcrumb-item active">Home</li>
+    </ol>
+</nav>
+<h2 class="text-center">Bem-vindo, {{ nome_completo }}</h2>
+<p class="text-center">Escolha uma opção no menu acima para acessar as classes.</p>
+{% endblock %}
